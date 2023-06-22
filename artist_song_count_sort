@@ -16,17 +16,19 @@ BEGIN {
 }
 
 END {
-  # Sort the artist counts in descending order
+  # Store the counts and artist names in an array
   for (artist in count) {
-    sorted_count[artist] = count[artist]
+    songs[count[artist]] = artist
   }
-  
-  asorti(sorted_count, sorted_keys, "@val_num_desc")
-  
+
+  # Sort the counts in descending order
+  num_counts = asorti(songs, sorted_counts, "@ind_num_desc")
+
   # Print the results
-  for (i = 1; i <= length(sorted_keys); i++) {
-    artist = sorted_keys[i]
-    print artist, sorted_count[artist]
+  for (i = 1; i <= num_counts; i++) {
+    count = sorted_counts[i]
+    artist = songs[count]
+    print artist, count
   }
 }
 
