@@ -1,0 +1,17 @@
+## Doing EDA with awk with the  help of chatGPT
+```
+# 1. Print the total number of movies in the dataset:
+awk 'NR > 1 { count++ } END { print "Total movies: " count }' sample_data.txt
+# 2. Calculate the average IMDb rating of the movies:
+awk -F '\t' 'NR > 1 { sum += $7 } END { avg = sum / (NR - 1); print "Average IMDb rating: " avg }' sample_data.txt
+# 3. Find the movie with the highest gross:
+awk -F '\t' 'NR > 1 && $15 ~ /^[0-9,.]+$/ { if ($15 > max_gross) { max_gross = $15; max_movie = $1 } } END { print "Movie with the highest gross: " max_movie }' sample_data.txt
+# 4. Find the movie with the highest gross:
+awk -F '\t' 'NR > 1 && $15 ~ /^[0-9,.]+$/ { if ($15 > max_gross) { max_gross = $15; max_movie = $1 } } END { print "Movie with the highest gross: " max_movie }' sample_data.txt
+# 5. Count the number of movies released in each year:
+awk -F '\t' 'NR > 1 { year = $2; count[year]++ } END { for (y in count) print "Year " y ": " count[y] " movies" }' sample_data.txt
+# 6. Calculate the total gross of all movies:
+awk -F '\t' 'NR > 1 && $15 ~ /^[0-9,.]+$/ { gross = gsub(",", "", $15); total += gross } END { print "Total gross: " total }' sample_data.txt
+# 
+
+
