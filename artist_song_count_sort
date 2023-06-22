@@ -12,23 +12,18 @@ BEGIN {
     count[artist] += 1  # Increment the count for the artist
   } else {
     count[artist] = 1  # Initialize the count for a new artist
+    artists[++num_artists] = artist  # Store the artist name
   }
 }
 
 END {
-  # Store the counts and artist names in an array
-  for (artist in count) {
-    songs[count[artist]] = artist
-  }
-
   # Sort the counts in descending order
-  num_counts = asorti(songs, sorted_counts, "@ind_num_desc")
+  asorti(count, sorted_artists, "@val_num_desc")
 
   # Print the results
-  for (i = 1; i <= num_counts; i++) {
-    count = sorted_counts[i]
-    artist = songs[count]
-    print artist, count
+  for (i = 1; i <= num_artists; i++) {
+    artist = sorted_artists[i]
+    print artist, count[artist]
   }
 }
 
