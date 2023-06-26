@@ -13,5 +13,17 @@ awk -F ',' 'NR > 1 { year = $2; count[year]++ } END { for (y in count) print "Ye
 # 6. Calculate the total gross of all movies:
 awk -F ',' 'NR > 1 && $15 ~ /^[0-9,.]+$/ { gross = gsub(",", "", $15); total += gross } END { print "Total gross: " total }' sample_data.txt
 # 
+### From ChatGPT
+```
+#!/bin/awk -f
 
+{
+    count[$0]++
+}
 
+END {
+    for (year in count) {
+        print year, count[year]
+    }
+}
+```
